@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  rescue_from ActiveRecord::InvalidRecord, with: :handle_invalid_data
+  rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_data
 
   def create
     user = User.create!(user_params)
+    byebug
     session[:user_id] = user.id
     render json: user, status: :created
   end
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password, :password_confirmation, :name, :email, :level_of_skill)
+    params.permit(:username, :password, :password_confirmation, :name, :email, :preferred_craft, :level_of_skill)
   end
 
   def handle_invalid_data(invalid)

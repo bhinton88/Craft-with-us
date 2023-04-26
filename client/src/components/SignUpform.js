@@ -1,10 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState, useContext } from "react";
-import { UserContext } from "../context/user";
+import { UserContext } from '../App';
 
 function SignUpForm () {
-  const { setUser } = useContext(UserContext)
+  const [setUser] = useContext(UserContext)
   const [errors, setErrors] = useState([]);
   const [newUserData, setNewUserData] = useState({
     username: "",
@@ -12,6 +12,7 @@ function SignUpForm () {
     password_confirmation: "",
     name: "",
     email: "",
+    preferred_craft: "",
     level_of_skill: ""
   });
 
@@ -36,6 +37,7 @@ function SignUpForm () {
         response.json().then(data => setErrors(data.errors))
       }
     })
+    
   }
 
   return (
@@ -82,7 +84,7 @@ function SignUpForm () {
         />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Full Name:</Form.Label>
+        <Form.Label>Email address:</Form.Label>
         <Form.Control
           name="email"
           type="email" 
@@ -91,6 +93,17 @@ function SignUpForm () {
           onChange={onChange}
         />
       </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Preferred Craft (Please list just one) </Form.Label>
+        <Form.Control
+          name="preferred_craft"
+          type="text" 
+          placeholder="i.e. Knitting, Crochet, Weaving, etc.." 
+          value={newUserData.preferred_craft}
+          onChange={onChange}
+        />
+      </Form.Group>
+      <Form.Label>Craft Skill Level: </Form.Label>
       <Form.Select
         name="level_of_skill"
         onChange={onChange}
@@ -105,7 +118,7 @@ function SignUpForm () {
         <ul>
           {
             errors.map(value => {
-              <li>{value}</li>
+              return <li>{value}</li>
             })
           }
         </ul>

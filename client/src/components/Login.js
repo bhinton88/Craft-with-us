@@ -9,7 +9,7 @@ function Login () {
   const [loginToggle, setLoginToggle] = useState(true)
 
   function onClick(){
-    setLoginToggle(!loginToggle)
+    setLoginToggle(loginToggle => !loginToggle)
   }
 
   return (

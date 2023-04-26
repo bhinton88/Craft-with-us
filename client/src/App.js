@@ -1,12 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useEffect, useState, createContext } from 'react';
+import { Route, Routes } from "react-router-dom";
 import Login from './components/Login';
+import NavBar from './components/NavBar';
+
+export const UserContext = createContext();
 
 function App() {
+
   const [user, setUser] = useState(null);
-
-  const UserContext = createContext()
-
 
   useEffect(()=> {
     fetch("/me")
@@ -19,19 +21,20 @@ function App() {
     })
   }, [])
 
-
-
   return (
-    <div>
-      <UserContext.Provider value={{ user, setUser }} >
-        {user? 
+    <UserContext.Provider value= {[user, setUser]}>
+      { user ?
+        <Routes>
           <NavBar />
+        </Routes>
+
         :
-          <Login />
-        }
-      </UserContext.Provider>
-    </div>
-  );
+
+        <Login />
+
+      }
+    </UserContext.Provider>  
+    );
 }
 
 export default App;

@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { UserContext } from "../context/user";
+import { UserContext } from '../App';
 
 function LoginForm () {
-  const { setUser } = useContext(UserContext)
+  const [ setUser ]= useContext(UserContext)
   const [errors, setErrors] = useState([]);
   const [loginFormData, setLoginFormData] = useState({
     username: "",
@@ -61,7 +61,7 @@ function LoginForm () {
         <ul>
           {
             errors.map(value => {
-              <li>{value}</li>
+              return <li>{value}</li>
             })
           }
         </ul>
