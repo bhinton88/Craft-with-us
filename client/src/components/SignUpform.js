@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { UserContext } from '../App';
 
 function SignUpForm () {
-  const [setUser] = useContext(UserContext)
+  const [ user, setUser ] = useContext(UserContext)
   const [errors, setErrors] = useState([]);
   const [newUserData, setNewUserData] = useState({
     username: "",

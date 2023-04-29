@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
   resources :signups
-  resources :workshops
-  resources :users, only: [:create, :show]
+  resources :workshops, only:[:create, :index]
+  resources :users, only: [:create]
 
   get "/me", to: "users#show"
   

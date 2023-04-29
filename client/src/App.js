@@ -16,24 +16,31 @@ function App() {
       if(response.ok)
       {
         response.json()
-        .then(user => setUser(user))
+        .then((user) => setUser(user))
       }
     })
   }, [])
 
+
+  if(!user) {
+    return (
+    <UserContext.Provider value={[user, setUser]}> 
+      <Login /> 
+    </UserContext.Provider> 
+    )
+  }
+
+
   return (
-    <UserContext.Provider value= {[user, setUser]}>
-      { user ?
-        <Routes>
-          <NavBar />
-        </Routes>
-
-        :
-
-        <Login />
-
-      }
-    </UserContext.Provider>  
+    <div>
+      <UserContext.Provider value= {[user, setUser]}>
+        <NavBar />
+        <main>
+          <Routes>
+          </Routes>
+        </main>
+      </UserContext.Provider>  
+    </div>
     );
 }
 

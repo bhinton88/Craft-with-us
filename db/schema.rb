@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_21_215455) do
+ActiveRecord::Schema.define(version: 2023_04_28_222713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "signups", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "workshop_id"
+    t.string "referral_type"
+    t.text "additional_notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -22,6 +31,18 @@ ActiveRecord::Schema.define(version: 2023_04_21_215455) do
     t.string "email"
     t.string "preferred_craft"
     t.string "level_of_skill"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "workshops", force: :cascade do |t|
+    t.string "workshop_name"
+    t.string "craft_type"
+    t.text "necessary_skills"
+    t.string "skill_level_required"
+    t.string "instructor_name"
+    t.text "yarn_requirements"
+    t.text "needed_tools"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
       render json: user, status: :created
@@ -12,7 +11,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :user_id
-    return json: {}, 
+    if session[:user_id]
+      session.delete :user_id
+      render json: {}
+    else
+      render json: {error: "You must first be logged in"}, status: :unauthorized
   end
 end

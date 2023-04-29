@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { UserContext } from '../App';
 
 function LoginForm () {
-  const [ setUser ]= useContext(UserContext)
+  const [ user, setUser ] = useContext(UserContext)
   const [errors, setErrors] = useState([]);
   const [loginFormData, setLoginFormData] = useState({
     username: "",
@@ -20,9 +20,9 @@ function LoginForm () {
 
   function onSubmit(e) {
     e.preventDefault()
-    fetch("/logout", {
+    fetch("/login", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-type": "application/json"},
       body: JSON.stringify(loginFormData)
     })
     .then(response =>{
@@ -58,15 +58,10 @@ function LoginForm () {
         />
       </Form.Group>
       <Form.Text>
-        <ul>
           {
-            errors.map(value => {
-              return <li>{value}</li>
-            })
+            errors.map(value => <ul><li> {value} </li></ul>)
           }
-        </ul>
       </Form.Text>
-
       <Button variant="primary" type="submit" onClick={onSubmit}>
         Submit
       </Button>
