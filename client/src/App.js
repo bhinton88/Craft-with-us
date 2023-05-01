@@ -3,6 +3,8 @@ import { useEffect, useState, createContext } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import WorkshopList from './components/WorkshopList';
+import WorkshopEnroll from './components/WorkshopEnroll';
 
 export const UserContext = createContext();
 
@@ -37,6 +39,8 @@ function App() {
         <NavBar />
         <main>
           <Routes>
+            <Route path="/workshops" element={<WorkshopList />} />
+            <Route path="/workshops/enroll" element={<WorkshopEnroll />} />
           </Routes>
         </main>
       </UserContext.Provider>  

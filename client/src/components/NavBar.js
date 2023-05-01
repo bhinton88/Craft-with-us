@@ -16,19 +16,20 @@ function NavBar() {
   }
 
   return(
-    <Navbar bg="light" expand="lg">
-    <Container>
+    <Navbar bg="light" expand="lg" >
       <Navbar.Brand >Craft with us!</Navbar.Brand>
+      <Navbar.Text>
+          Signed in as: <strong>{user.name}</strong>
+      </Navbar.Text>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
+        <Nav className="ms-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/Classes/:id">My Workshops</Nav.Link>
-          <Nav.Link as={Link} to="/classes">All Available Workshops</Nav.Link>
+          <Nav.Link as={Link} to="/workshops/:user_id">My Workshops</Nav.Link>
+          <Nav.Link as={Link} to="/workshops">All Available Workshops</Nav.Link>
         </Nav>
         <Button onClick={onClick}>Sign Out</Button>
       </Navbar.Collapse>
-    </Container>
   </Navbar>
 
 

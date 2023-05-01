@@ -1,3 +1,3 @@
 class WorkshopSerializer < ActiveModel::Serializer
-  attributes :id, :workshop_name, :craft_type, :necessary_skills, :skill_level_required, :instructor_name, :yarn_requirements, :needed_tools
+  attributes :id, :workshop_name, :instructor_name, :craft_type, :skill_level_required, :workshop_description, :yarn_and_tool_requirements
 end
