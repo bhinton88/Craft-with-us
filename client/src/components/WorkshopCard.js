@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom"
 
 function WorkshopCard ({ workshop }) {
 
+  const navigate = useNavigate();
+
   function onClick () {
-    useNavigate("/workshops/enroll")
+    navigate(`/workshops/${workshop.id}/enroll`)
   }
 
   return (
@@ -28,7 +30,7 @@ function WorkshopCard ({ workshop }) {
         <br/>
         {workshop.yarn_and_tool_requirements}
       </Card.Text>
-      <Button onClick={onClick}>Enroll Now!</Button>
+      <Button variant="info" onClick={onClick}>Enroll Now!</Button>
     </Card.Body>
    </Card>
   )

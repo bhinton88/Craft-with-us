@@ -40,7 +40,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/workshops" element={<WorkshopList />} />
-            <Route path="/workshops/enroll" element={<WorkshopEnroll />} />
+            <Route path="/workshops/:id/enroll" element={<WorkshopEnroll />} />
           </Routes>
         </main>
       </UserContext.Provider>  
