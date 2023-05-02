@@ -1,6 +1,8 @@
 import { UserContext } from '../App';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useParams } from 'react-router';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 
 function WorkshopEnroll () {
@@ -8,17 +10,99 @@ function WorkshopEnroll () {
   const { id } = useParams()
 
   const [ user, setUser ] = useContext(UserContext)
+  const [errors, setErrors] = useState([])
   const [enrollFormData, setEnrollFormData] = useState({
     user_id: user.id,
-    workshop_id: id,
-    referall_type: "",
+    workshop_id: parseInt(id),
+    referral_type: "",
     additional_notes: ""
   })
 
-  return (
-    <div>
+  console.log(enrollFormData)
 
-    </div>
+  function onChange(event) {
+    setEnrollFormData({
+      ...enrollFormData,
+      [event.target.name]: event.target.value
+    })
+    console.log(enrollFormData)
+  }
+
+  function onClick(event){
+    setEnrollFormData({
+      ...enrollFormData,
+    [event.target.name]: event.target.value
+    })
+  }
+
+  // function onSubmit(event){
+  //   event.preventDefault()
+  //   fetch("/signups",{
+  //     method: "POST",
+  //     headers: {"Content-Type":"application/json"},
+  //     body: JSON.stringify(enrollFormData)
+  //   })
+  //   .then(response => {
+  //     if(response.ok) {
+  //       response.json().then(data => console.log(data))
+  //     } else{
+  //       response.json().then(data => setErrors(data))
+  //     }
+  //   })
+  // }
+
+  return (
+    <Form>
+    <Form.Group onClick={onClick}  className="mb-3">
+      <Form.Text>How did you hear about this workshop?</Form.Text>
+      <Form.Check 
+        type='radio'
+        label='Email'
+        name='referral_type'
+        id={`default-radio`}
+        value="email"
+      />
+      <Form.Check 
+        type='radio'
+        label='Social Media'
+        name='referral_type'
+        id={`default-radio`}
+        value="social media"
+      />
+      <Form.Check 
+        type='radio'
+        label='Ravelry'
+        name='referral_type'
+        id={`default-radio`}
+        value="ravelry"
+      />
+      <Form.Check 
+        type='radio'
+        label='Local Yarn Shop'
+        name='referral_type'
+        id={`default-radio`}
+        value="local yarn shop"
+      />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Any notes/comments for the Instructor? </Form.Label>
+      <Form.Control 
+        name="additional_notes"
+        as="textarea" 
+        onChange={onChange}
+        rows={3} 
+      />
+    </Form.Group>
+
+    <Form.Text>
+        {
+          errors.map(value => <ul><li> {value} </li></ul>)
+        }
+    </Form.Text>
+    <Button variant="primary" type="submit">
+      Enroll now!
+    </Button>
+  </Form>
   )
 
 }
