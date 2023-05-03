@@ -11,6 +11,9 @@ function WorkshopCard ({ workshop }) {
     navigate(`/workshops/${workshop.id}/enroll`)
   }
 
+  // some logic which checks if our user has signed up for a class.. and shows some mark which allows the user
+  // to know that they are signed up 
+
   return (
    <Card className="mx-auto my-2">
     <Card.Body>
@@ -31,7 +34,7 @@ function WorkshopCard ({ workshop }) {
         <br/>
         {workshop.yarn_and_tool_requirements}
       </Card.Text>
-      <Button variant="info" onClick={onClick}>Enroll Now!</Button>
+      <Button variant="info" onClick={onClick}>I want to take this class!</Button>
     </Card.Body>
    </Card>
   )

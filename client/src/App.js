@@ -5,6 +5,7 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import WorkshopList from './components/WorkshopList';
 import WorkshopEnroll from './components/WorkshopEnroll';
+import UserWorkshopList from './components/UserWorkshopsList';
 
 export const UserContext = createContext();
 
@@ -22,8 +23,6 @@ function App() {
       }
     })
   }, [])
-
-  console.log(user)
 
 
   if(!user) {
@@ -43,6 +42,7 @@ function App() {
           <Routes>
             <Route path="/workshops" element={<WorkshopList />} />
             <Route path="/workshops/:id/enroll" element={<WorkshopEnroll />} />
+            <Route path="/workshops/:user_id" element={<UserWorkshopList />} />
           </Routes>
         </main>
       </UserContext.Provider>  

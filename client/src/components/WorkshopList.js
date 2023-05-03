@@ -12,8 +12,6 @@ function WorkshopList() {
     .then(data => setWorkshops(data))
   }, [])
 
-  console.log(workshops)
-
   return (
     <section>
         {

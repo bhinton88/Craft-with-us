@@ -1,6 +1,6 @@
 import { UserContext } from '../App';
 import { useContext, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -8,8 +8,10 @@ import Button from 'react-bootstrap/Button';
 function WorkshopEnroll () {
 
   const { id } = useParams()
+  const navigate = useNavigate()
+  
 
-  const [ user, setUser ] = useContext(UserContext)
+  const [user, setUser ] = useContext(UserContext)
   const [errors, setErrors] = useState([])
   const [enrollFormData, setEnrollFormData] = useState({
     user_id: user.id,
@@ -18,14 +20,11 @@ function WorkshopEnroll () {
     additional_notes: ""
   })
 
-  console.log(enrollFormData)
-
   function onChange(event) {
     setEnrollFormData({
       ...enrollFormData,
       [event.target.name]: event.target.value
     })
-    console.log(enrollFormData)
   }
 
   function onClick(event){
@@ -35,24 +34,24 @@ function WorkshopEnroll () {
     })
   }
 
-  // function onSubmit(event){
-  //   event.preventDefault()
-  //   fetch("/signups",{
-  //     method: "POST",
-  //     headers: {"Content-Type":"application/json"},
-  //     body: JSON.stringify(enrollFormData)
-  //   })
-  //   .then(response => {
-  //     if(response.ok) {
-  //       response.json().then(data => console.log(data))
-  //     } else{
-  //       response.json().then(data => setErrors(data))
-  //     }
-  //   })
-  // }
-
+  function onSubmit(event){
+    event.preventDefault()
+    fetch("/signups",{
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(enrollFormData)
+    })
+    .then(response => {
+      if(response.ok) {
+        response.json().then(data => navigate('/workshops')) // what do I do with this data?
+      } else{
+        response.json().then(data => setErrors(data.errors))
+      }
+    })
+  }
+  
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
     <Form.Group onClick={onClick}  className="mb-3">
       <Form.Text>How did you hear about this workshop?</Form.Text>
       <Form.Check 
@@ -95,9 +94,20 @@ function WorkshopEnroll () {
     </Form.Group>
 
     <Form.Text>
+      <ul>
         {
-          errors.map(value => <ul><li> {value} </li></ul>)
-        }
+          errors.map(value => {
+            return (
+            <li 
+              key={value}
+              style={{color: "red"}}
+            >
+              <strong>{value}</strong>
+            </li>
+            )
+            })
+          }
+      </ul>
     </Form.Text>
     <Button variant="primary" type="submit">
       Enroll now!

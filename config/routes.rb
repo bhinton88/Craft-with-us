@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :signups
+  resources :signups, only:[:create]
   resources :workshops, only:[:create, :index]
   resources :users, only: [:create]
 
