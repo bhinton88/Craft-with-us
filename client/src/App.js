@@ -40,9 +40,10 @@ function App() {
         <NavBar />
         <main>
           <Routes>
-            <Route path="/workshops" element={<WorkshopList />} />
+            <Route path="/" element={<WorkshopList />} />
+            <Route path="/all_workshops" element={<WorkshopList />} />
+            <Route path="/my_workshops" element={<UserWorkshopList /> } />
             <Route path="/workshops/:id/enroll" element={<WorkshopEnroll />} />
-            <Route path="/workshops/:user_id" element={<UserWorkshopList />} />
           </Routes>
         </main>
       </UserContext.Provider>  

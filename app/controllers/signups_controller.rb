@@ -14,6 +14,16 @@ class SignupsController < ApplicationController
     end
   end
 
+  def destroy
+    #  a user can only sign up for ONE workshop instance.. so we should be able to find the workshop sign up
+    # by passing the workshop number in the params
+
+    signup = Signup.find_by(workshop_id: params{:workshop_id})
+    signup.destroy 
+    render json: {}, head: :no_content
+
+  end
+
   private
 
   def signup_params

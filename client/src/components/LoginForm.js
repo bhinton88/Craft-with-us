@@ -58,9 +58,11 @@ function LoginForm () {
         />
       </Form.Group>
       <Form.Text>
+        <ul>
           {
-            errors.map(value => <ul><li> {value} </li></ul>)
+            errors.map(value => <li key={value} style = {{color: "red"}}> <strong> {value} </strong> </li>)
           }
+        </ul>
       </Form.Text>
       <Button variant="primary" type="submit" onClick={onSubmit}>
         Submit

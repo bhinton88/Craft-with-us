@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :created
     else
-      render json: {error: "Invalid Username or Password"}, status: :unauthorized
+      render json: {errors: ["Invalid Username or Password"]}, status: :unauthorized
     end
   end
 
@@ -16,5 +16,7 @@ class SessionsController < ApplicationController
       render json: {}
     else
       render json: {error: "You must first be logged in"}, status: :unauthorized
+    end
   end
+
 end

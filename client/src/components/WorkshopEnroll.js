@@ -27,13 +27,6 @@ function WorkshopEnroll () {
     })
   }
 
-  function onClick(event){
-    setEnrollFormData({
-      ...enrollFormData,
-    [event.target.name]: event.target.value
-    })
-  }
-
   function onSubmit(event){
     event.preventDefault()
     fetch("/signups",{
@@ -52,7 +45,7 @@ function WorkshopEnroll () {
   
   return (
     <Form onSubmit={onSubmit}>
-    <Form.Group onClick={onClick}  className="mb-3">
+    <Form.Group className="mb-3" value={enrollFormData.referral_type}>
       <Form.Text>How did you hear about this workshop?</Form.Text>
       <Form.Check 
         type='radio'
@@ -60,6 +53,8 @@ function WorkshopEnroll () {
         name='referral_type'
         id={`default-radio`}
         value="email"
+        checked={enrollFormData.referral_type === "email"}
+        onChange={onChange}
       />
       <Form.Check 
         type='radio'
@@ -67,6 +62,8 @@ function WorkshopEnroll () {
         name='referral_type'
         id={`default-radio`}
         value="social media"
+        checked={enrollFormData.referral_type === "social media"}
+        onChange={onChange}
       />
       <Form.Check 
         type='radio'
@@ -74,6 +71,8 @@ function WorkshopEnroll () {
         name='referral_type'
         id={`default-radio`}
         value="ravelry"
+        checked={enrollFormData.referral_type === "ravelry"}
+        onChange={onChange}
       />
       <Form.Check 
         type='radio'
@@ -81,6 +80,8 @@ function WorkshopEnroll () {
         name='referral_type'
         id={`default-radio`}
         value="local yarn shop"
+        checked={enrollFormData.referral_type === "local yarn shop"}
+        onChange={onChange}
       />
     </Form.Group>
     <Form.Group>
@@ -88,6 +89,7 @@ function WorkshopEnroll () {
       <Form.Control 
         name="additional_notes"
         as="textarea" 
+        value={enrollFormData.additional_notes}
         onChange={onChange}
         rows={3} 
       />

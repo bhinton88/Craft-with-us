@@ -1,4 +1,4 @@
-import { Nav, Navbar, Container, Button } from "react-bootstrap"
+import { Nav, Navbar, Button } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import { UserContext } from '../App';
 import { useContext } from "react";
@@ -25,8 +25,8 @@ function NavBar() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/workshops/:user_id">My Workshops</Nav.Link>
-          <Nav.Link as={Link} to="/workshops">All Available Workshops</Nav.Link>
+          <Nav.Link as={Link} to="/my_workshops">My Workshops</Nav.Link>
+          <Nav.Link as={Link} to="/all_workshops">All Available Workshops</Nav.Link>
         </Nav>
         <Button onClick={onClick}>Sign Out</Button>
       </Navbar.Collapse>

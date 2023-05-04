@@ -34,7 +34,7 @@ function WorkshopCard ({ workshop }) {
         <br/>
         {workshop.yarn_and_tool_requirements}
       </Card.Text>
-      <Button variant="info" onClick={onClick}>I want to take this class!</Button>
+      <Button variant="info" onClick={onClick}>Enroll me in this workshop!</Button>
     </Card.Body>
    </Card>
   )
