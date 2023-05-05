@@ -1,5 +1,6 @@
 class SignupsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_data
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def create
     workshop = Workshop.find_by(id: params[:workshop_id])
@@ -14,13 +15,19 @@ class SignupsController < ApplicationController
     end
   end
 
-  def destroy
-    #  a user can only sign up for ONE workshop instance.. so we should be able to find the workshop sign up
-    # by passing the workshop number in the params
+  def update
+    user = User.find_by(id: session[:user_id])
+    signup = user.signups.find_by(id: params[:id])
+    signup.update(signup_params)
+    render json: signup, status: :created
+  end
 
-    signup = Signup.find_by(workshop_id: params{:workshop_id})
-    signup.destroy 
-    render json: {}, head: :no_content
+  def destroy
+    # currently have it set up that the signups listed are only ones for the current user and only those 
+    # signups can be deleted
+    signup = Signup.find_by(id: params[:id])
+    signup.destroy
+    head :no_content
 
   end
 
@@ -32,6 +39,10 @@ class SignupsController < ApplicationController
 
   def handle_invalid_data(invalid)
     render json: {errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def handle_record_not_found
+    render json: {errors: ["Signup not found"]}, status: :not_found
   end
 
 end

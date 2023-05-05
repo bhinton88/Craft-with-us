@@ -7,12 +7,10 @@ function UserWorkshopList () {
   const [user, setUser] = useContext(UserContext)
   const [currentUserSignups, setCurrentUserSignups] = useState(user.signups)
 
-   console.log(user)
-
-  function updateSignups(signup) {
+  function updateSignups(updatedSignup) {
    const updateSignups = currentUserSignups.map(value =>{
-      if(value.id === signup.id) {
-        return signup
+      if(value.id === updatedSignup.id) {
+        return updatedSignup
       } else {
         return value
       }
@@ -20,11 +18,12 @@ function UserWorkshopList () {
 
     setCurrentUserSignups(updateSignups)
   }
-  
 
-  // make sure to set up serializer for response on signup edit to include workshop object in response
+  function deleteSignup(signupId) {
+    const removeSignup = currentUserSignups.filter(value=> value.id != signupId)
 
-
+    setCurrentUserSignups(removeSignup)
+  }
 
   return (
     <section>
@@ -33,6 +32,7 @@ function UserWorkshopList () {
                                             key={value.id} 
                                             signup={value} 
                                             updateSignups={updateSignups}
+                                            deleteSignup={deleteSignup}
                                           />)
       }
     </section>

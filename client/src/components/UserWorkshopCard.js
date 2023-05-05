@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
 
-function UserWorkshopCard ({ signup, updateSignups }) {
+function UserWorkshopCard ({ signup, updateSignups, deleteSignup }) {
   const [errors, setErrors ] = useState([])
   const [updateToggle, setUpdateToggle] = useState(false)
   const [signupFormData, setSignupFormData] = useState({
@@ -18,9 +18,7 @@ function UserWorkshopCard ({ signup, updateSignups }) {
     })
   }
 
-  console.log(signupFormData)
-
-  function onClick() {
+  function onToggleClick() {
     setUpdateToggle( updateToggle => !updateToggle)
   }
 
@@ -28,18 +26,26 @@ function UserWorkshopCard ({ signup, updateSignups }) {
     event.preventDefault()
     fetch(`/signups/${signup.id}`,{
       method: "PATCH",
-      headers: {"Content-Type":"application/json"},
+      headers: {"Content-type": "application/json"},
       body: JSON.stringify(signupFormData)
     })
     .then(response => {
       if(response.ok){
         response.json().then(data => updateSignups(data))
       } else {
-        response.json().then(errors => setErrors(errors))
+        response.json().then(data => setErrors(data.errors))
       }
     })
     setUpdateToggle( updateToggle => !updateToggle)
 
+  }
+
+  function onClick(){
+    fetch(`/signups/${signup.id}`,{
+      method: "DELETE"
+    })
+    
+    deleteSignup(signup.id)
   }
 
 
@@ -120,8 +126,8 @@ function UserWorkshopCard ({ signup, updateSignups }) {
             </Card.Text>
         }
         <Card.Text>
-            <Button onClick={onClick} disabled={updateToggle ? true : false}>Begin updating Info</Button>
-            <Button variant="danger">Remove me from Workshop</Button>
+            <Button onClick={onToggleClick} disabled={updateToggle ? true : false}>Begin updating Info</Button>
+            <Button onClick={onClick} variant="danger">Remove me from Workshop</Button>
         </Card.Text>
     </Card>
   )

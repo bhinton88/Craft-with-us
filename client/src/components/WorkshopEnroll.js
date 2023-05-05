@@ -36,7 +36,7 @@ function WorkshopEnroll () {
     })
     .then(response => {
       if(response.ok) {
-        response.json().then(data => navigate('/workshops')) // what do I do with this data?
+        response.json().then(data => navigate('/all_workshops')) // what do I do with this data?
       } else{
         response.json().then(data => setErrors(data.errors))
       }
