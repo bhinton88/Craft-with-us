@@ -26,7 +26,7 @@ function UserWorkshopList () {
   }
 
   return (
-    <section>
+    <section className='allCardContainers'>
       {
         currentUserSignups.map(value => <UserWorkshopCard 
                                             key={value.id} 

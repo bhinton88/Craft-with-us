@@ -50,6 +50,7 @@ function UserWorkshopCard ({ signup, updateSignups, deleteSignup }) {
 
 
   return (
+    <div className="cardContainer">
     <Card className="mx-auto my-2">
       <Card.Body>
         <Card.Title><strong>{signup.workshop.workshop_name}</strong></Card.Title>
@@ -130,6 +131,7 @@ function UserWorkshopCard ({ signup, updateSignups, deleteSignup }) {
             <Button onClick={onClick} variant="danger">Remove me from Workshop</Button>
         </Card.Text>
     </Card>
+    </div>
   )
 
 }

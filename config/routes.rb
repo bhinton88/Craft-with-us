@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :signups, only: [:create, :destroy , :update]
+  resources :signups, only: [:create, :destroy ,:update]
   resources :workshops, only: [:create, :index]
   resources :users, only: [:create]
 

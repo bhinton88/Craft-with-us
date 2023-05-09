@@ -1,0 +1,24 @@
+.signInContainer {
+  display: flex;
+  flex-direction: column;
+  padding-block: 5rem;
+  width: 500px;
+}
+
+.login {
+  justify-content: space-around;
+  display:flex;
+}
+
+.allCardContainers{
+  justify-content: space-around;
+  flex-direction: column;
+  display:flex;
+  align-items: center;
+}
+
+.cardContainer {
+  display: flex;
+  width: 700px;
+  height: auto;
+}

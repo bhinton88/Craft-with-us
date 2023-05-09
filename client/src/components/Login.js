@@ -13,19 +13,19 @@ function Login () {
   }
 
   return (
-    <div>
+    <div className="login">
       {loginToggle? 
-        <>
+        <div className="signInContainer">
           <LoginForm /> 
           <p>Dont have an account? Sign up for one!</p>
           <Button variant="primary" onClick={onClick}>Sign Up</Button>
-        </>
+        </div>
         : 
-        <>
+        <div className="signInContainer">
           <SignUpForm />
-          <p>Already have an account? Click here</p>
+          <p>Already have an account? Click below</p>
           <Button variant="primary" onClick={onClick}>Login with account</Button>
-        </>
+        </div>
       }
     </div>
 

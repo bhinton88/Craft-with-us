@@ -1,26 +1,24 @@
-import { useState, useEffect } from "react"
+import { useNavigate } from "react-router";
 import WorkshopCard from "./WorkshopCard"
 import Button from 'react-bootstrap/Button';
-import UserWorkshopCard from "./UserWorkshopCard";
 
-function WorkshopList() {
+function WorkshopList({ workshops }) {
 
-  const [workshops, setWorkshops] = useState([])
+  const navigate = useNavigate();
 
-  console.log(workshops)
-  
-
-  useEffect(() => {
-    fetch("/workshops")
-    .then(response => response.json())
-    .then(data => setWorkshops(data))
-  }, [])
+  function onClick() {
+    navigate('/all_workshops/new_workshop')
+  }
 
   return (
-    <section>
-      <Button>Add a new workshop!</Button>
+    <section className='allCardContainers'>
+      <Button onClick={onClick}>Add a new workshop!</Button>
         {
-          workshops.map(value => <WorkshopCard key={value.id} workshop={value} />)
+          workshops.map(value => <WorkshopCard 
+                                    key={value.id} 
+                                    workshop={value}
+                                    users={value.users}
+                                  />)
         }
     </section>
   )

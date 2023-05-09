@@ -118,7 +118,7 @@ function SignUpForm () {
         <ul>
           {
             errors.map(value => {
-              return <li>{value}</li>
+              return <li style={{color: "red" }}><strong>{value}</strong></li>
             })
           }
         </ul>
