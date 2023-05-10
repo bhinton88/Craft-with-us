@@ -1,13 +1,24 @@
+body {
+  background-image: url("./images/background-g51a93acee_1920.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
+}
+
+
 .signInContainer {
   display: flex;
   flex-direction: column;
-  padding-block: 5rem;
+  padding-block: 2rem;
   width: 500px;
 }
 
 .login {
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   display:flex;
+  margin: 5rem;
 }
 
 .allCardContainers{
@@ -21,4 +32,22 @@
   display: flex;
   width: 700px;
   height: auto;
+}
+
+#loginImage {
+  height: 200px;
+  width: 400px;
+}
+
+#infoSection {
+  font-family: 'Crafty Girls', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+#navbarImage {
+  width: 60px;
+  height: 40px;
 }

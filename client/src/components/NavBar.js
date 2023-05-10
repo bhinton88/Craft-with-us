@@ -23,7 +23,15 @@ function NavBar() {
   return(
     <Navbar expanded={expanded} bg="light" expand="lg"  >
       <Container>
-        <Navbar.Brand >Craft with us!</Navbar.Brand>
+        <Navbar.Brand>
+        <img 
+          src={require("../images/295423.png")}
+          alt="yarn ball"
+          className="d-inline-block align-top"
+          id="navbarImage"
+          />
+          Craft with us!
+        </Navbar.Brand>
         <Navbar.Text>
             Signed in as: <strong>{user.name}</strong>
         </Navbar.Text>

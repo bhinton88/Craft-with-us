@@ -14,6 +14,15 @@ function Login () {
 
   return (
     <div className="login">
+        <img 
+          src={require("../images/ball-of-yarn-gc8a10f1ad_640.png")}
+          id="loginImage"
+          alt="yarn ball"
+          />
+        <div id="infoSection">
+          <h1>Craft with us!</h1>
+          <p>A place to check out and enroll in fun craft workshops!</p>
+        </div>
       {loginToggle? 
         <div className="signInContainer">
           <LoginForm /> 
