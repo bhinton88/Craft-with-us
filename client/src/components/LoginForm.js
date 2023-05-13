@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { UserContext } from '../App';
 
 function LoginForm () {
-  const [ user, setUser ] = useContext(UserContext)
+  const [ user, setUser, signups, setSignups] = useContext(UserContext)
   const [errors, setErrors] = useState([]);
   const [loginFormData, setLoginFormData] = useState({
     username: "",
@@ -27,7 +27,10 @@ function LoginForm () {
     })
     .then(response =>{
       if (response.ok) {
-        response.json().then(user => setUser(user))
+        response.json().then(user => {
+          setUser(user)
+          setSignups(user.signups)
+        })
       } else {
         response.json().then(data => setErrors(data.errors))
       }

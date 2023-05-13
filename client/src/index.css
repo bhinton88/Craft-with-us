@@ -6,7 +6,6 @@ body {
   background-size: cover;
 }
 
-
 .signInContainer {
   display: flex;
   flex-direction: column;
@@ -14,11 +13,27 @@ body {
   width: 500px;
 }
 
+.newWorkshopContainer {
+  display: flex;
+  flex-direction: column;
+  padding-block: 2rem;
+  width: auto;
+  align-items: center;
+}
+
 .login {
   flex-direction: column;
   align-items: center;
   display:flex;
   margin: 5rem;
+}
+
+#enrollContainer {
+  display: flex;
+  flex-direction: column;
+  padding-block: 2rem;
+  width: auto;
+  align-items: center;
 }
 
 .allCardContainers{

@@ -47,6 +47,7 @@ function AddWorkshopForm({updateWorkshop}) {
   }
 
   return (
+    <div className="newWorkshopContainer">
     <Form onSubmit={submitNewWorkshop}>
       <Form.Group className="mb-3">
         <Form.Label>Workshop Name:</Form.Label>
@@ -117,6 +118,7 @@ function AddWorkshopForm({updateWorkshop}) {
         Submit new workshop
       </Button>
     </Form>
+    </div>
   )
 
 }

@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { UserContext } from '../App';
 
 function SignUpForm () {
-  const [ user, setUser ] = useContext(UserContext)
+  const [ user, setUser, signups, setSignups] = useContext(UserContext)
   const [errors, setErrors] = useState([]);
   const [newUserData, setNewUserData] = useState({
     username: "",
@@ -32,7 +32,10 @@ function SignUpForm () {
     })
     .then(response => {
       if(response.ok){
-        response.json().then(user => setUser(user))
+        response.json().then(user => {
+          setUser(user)
+          setSignups(user.signups)
+        })
       } else {
         response.json().then(data => setErrors(data.errors))
       }

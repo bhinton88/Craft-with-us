@@ -1,14 +1,14 @@
 import { UserContext } from '../App';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import UserWorkshopCard from './UserWorkshopCard';
 
 function UserWorkshopList () {
 
-  const [user, setUser] = useContext(UserContext)
-  const [currentUserSignups, setCurrentUserSignups] = useState(user.signups)
+  const [ user, setUser, signups, setSignups] = useContext(UserContext)
+  
 
   function updateSignups(updatedSignup) {
-   const updateSignups = currentUserSignups.map(value =>{
+   const updatedSignups = signups.map(value =>{
       if(value.id === updatedSignup.id) {
         return updatedSignup
       } else {
@@ -16,19 +16,19 @@ function UserWorkshopList () {
       }
     })
 
-    setCurrentUserSignups(updateSignups)
+    setSignups([...signups, updatedSignups])
   }
 
   function deleteSignup(signupId) {
-    const removeSignup = currentUserSignups.filter(value=> value.id != signupId)
+    const removeSignup = signups.filter(value=> value.id !== signupId)
 
-    setCurrentUserSignups(removeSignup)
+    setSignups(removeSignup)
   }
 
   return (
     <section className='allCardContainers'>
       {
-        currentUserSignups.map(value => <UserWorkshopCard 
+        signups.map(value => <UserWorkshopCard 
                                             key={value.id} 
                                             signup={value} 
                                             updateSignups={updateSignups}

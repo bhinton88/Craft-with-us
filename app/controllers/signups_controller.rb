@@ -2,6 +2,8 @@ class SignupsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_data
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
+  before_action :authorize
+
   def create
     workshop = Workshop.find_by(id: params[:workshop_id])
     is_user_enrolled = workshop.users.find_by(id: params[:user_id])
@@ -32,6 +34,10 @@ class SignupsController < ApplicationController
   end
 
   private
+
+  def authorize
+    render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
+  end
 
   def signup_params
     params.permit(:user_id, :workshop_id, :referral_type, :additional_notes)

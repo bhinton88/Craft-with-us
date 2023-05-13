@@ -9,7 +9,7 @@ function WorkshopCard ({ workshop, users}) {
   const navigate = useNavigate();
 
   function onClick () {
-    navigate(`/workshops/${workshop.id}/enroll`)
+    navigate(`/all_workshops/${workshop.id}/enroll`)
   }
 
   // some logic which checks if our user has signed up for a class.. and shows some mark which allows the user

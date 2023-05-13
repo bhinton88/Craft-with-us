@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_data
 
+  before_action :authorize
+  skip_before_action :authorize, only:[:create]
+
   def create
     user = User.create!(user_params)
     session[:user_id] = user.id
@@ -18,6 +21,10 @@ class UsersController < ApplicationController
 
 
   private
+
+  def authorize
+    render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
+  end
 
   def user_params
     params.permit(:username, :password, :password_confirmation, :name, :email, :preferred_craft, :level_of_skill)

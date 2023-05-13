@@ -109,6 +109,13 @@ function UserWorkshopCard ({ signup, updateSignups, deleteSignup }) {
                 rows={3} 
               />      
             </Form.Group>
+            <Form.Text>
+              <ul>
+                {
+                  errors.map(value => <li key={value} style = {{color: "red"}}> <strong> {value} </strong> </li>)
+                }
+              </ul>
+            </Form.Text>
             <Button type="submit" variant="secondary" onSubmit={onSubmit}>Finished updating info!</Button>
           </Form>
           :

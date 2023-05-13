@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from '../App';
 import { useContext, useState } from "react";
 
-function NavBar() {
+function NavBar({clearSignupsOnSignOut}) {
 
   const [ user, setUser ] = useContext(UserContext)
   const [ expanded, setExpanded] = useState(false)
@@ -17,6 +17,8 @@ function NavBar() {
     })
 
     setUser(null)
+    clearSignupsOnSignOut([])
+
   }
 
 
