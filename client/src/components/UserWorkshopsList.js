@@ -5,7 +5,7 @@ import UserWorkshopCard from './UserWorkshopCard';
 function UserWorkshopList () {
 
   const [ user, setUser, signups, setSignups] = useContext(UserContext)
-  
+
 
   function updateSignups(updatedSignup) {
    const updatedSignups = signups.map(value =>{
@@ -16,8 +16,10 @@ function UserWorkshopList () {
       }
     })
 
-    setSignups([...signups, updatedSignups])
+    setSignups(updatedSignups)
   }
+
+  console.log(user)
 
   function deleteSignup(signupId) {
     const removeSignup = signups.filter(value=> value.id !== signupId)
