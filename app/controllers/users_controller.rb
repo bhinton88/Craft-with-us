@@ -22,12 +22,12 @@ class UsersController < ApplicationController
 
   private
 
-  def authorize
-    render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
-  end
-
   def user_params
     params.permit(:username, :password, :password_confirmation, :name, :email, :preferred_craft, :level_of_skill)
+  end
+
+  def authorize
+    render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
   end
 
   def handle_invalid_data(invalid)
