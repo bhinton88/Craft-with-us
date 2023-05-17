@@ -15,7 +15,6 @@ function WorkshopEnroll () {
   const [user, setUser,signups, setSignups]= useContext(UserContext)
   const [errors, setErrors] = useState([])
   const [enrollFormData, setEnrollFormData] = useState({
-    user_id: user.id,
     workshop_id: parseInt(id),
     referral_type: "",
     additional_notes: ""

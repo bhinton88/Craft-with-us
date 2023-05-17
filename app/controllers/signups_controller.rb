@@ -14,7 +14,6 @@ class SignupsController < ApplicationController
     else
       user = User.find_by(id: session[:user_id])
       signup = user.signups.create!(signup_params)
-      # signup = Signup.create!(signup_params)
       render json: signup, status: :created
     end
   end

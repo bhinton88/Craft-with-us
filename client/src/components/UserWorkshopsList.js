@@ -19,8 +19,6 @@ function UserWorkshopList () {
     setSignups(updatedSignups)
   }
 
-  console.log(user)
-
   function deleteSignup(signupId) {
     const removeSignup = signups.filter(value=> value.id !== signupId)
 
