@@ -12,7 +12,9 @@ class SignupsController < ApplicationController
     if is_user_enrolled
       render json: {errors: ["You are already enrolled in this Workshop"]}, status: :unauthorized
     else
-      signup = Signup.create!(signup_params)
+      user = User.find_by(id: session[:user_id])
+      signup = user.signups.create!(signup_params)
+      # signup = Signup.create!(signup_params)
       render json: signup, status: :created
     end
   end
@@ -40,7 +42,7 @@ class SignupsController < ApplicationController
   end
 
   def signup_params
-    params.permit(:user_id, :workshop_id, :referral_type, :additional_notes)
+    params.permit(:workshop_id, :referral_type, :additional_notes)
   end
 
   def handle_invalid_data(invalid)

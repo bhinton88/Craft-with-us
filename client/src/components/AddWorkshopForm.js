@@ -17,8 +17,6 @@ function AddWorkshopForm({updateWorkshop}) {
     yarn_and_tool_requirements: ""
   })
 
-  console.log(newWorkshopFormData)
-
   function onChange(event){
     setNewWorkshopFormData({
       ...newWorkshopFormData,
