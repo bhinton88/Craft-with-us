@@ -1,4 +1,4 @@
-# Phase 4 Project: Craft with us! An app to plan and enroll in crafting workshops
+# Craft with us! An app to plan and enroll in crafting workshops
 
 ## About the App:
 
@@ -11,8 +11,20 @@ This app is for all the craft lovers who enjoy learning new crafts or build on t
 
 ## Technologies
 
-React (JavaScript, Bootstrap, React-Router)
-Ruby on Rails (ActiveRecord, PostgreSQL)
+React/JavaScript:
+  Dependencies:
+  - Bootstrap
+  - Bootstrap-React
+  - React Router Dom
+
+Ruby on Rails:
+  - Active Record
+  - Gems:
+    - bcrypt for authorization
+    - puma
+    - pg (for postgresql)
+    - active_model_serializers
+
 HTML and CSS
 
 ## Setup

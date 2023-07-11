@@ -64,7 +64,7 @@ function App() {
               element={<WorkshopList workshops={workshops} />} 
             />
             <Route 
-              path="/all_workshops/new_workshop" 
+              path="/all_workshops/new_workshop" // /workshops/new
               element={<AddWorkshopForm 
               updateWorkshop={updateWorkshop}/>} 
             />

@@ -14,6 +14,16 @@ class WorkshopsController < ApplicationController
     render json: new_workshop, status: :created
   end
 
+  # returning workshops that have AT LEAST the given number of enrolles as passed in the request to /big/:number_of_enrollees
+ 
+  def big
+    #Some logic to check the number of enrollees
+    workshops = Workshop.all.select { |workshop| workshop.users.length >= params[:number_of_enrollees].to_i }
+    render json: workshops
+
+  end
+
+
   private
 
   def authorize

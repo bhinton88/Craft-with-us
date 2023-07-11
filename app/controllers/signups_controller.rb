@@ -6,7 +6,7 @@ class SignupsController < ApplicationController
 
   def create
     workshop = Workshop.find_by(id: params[:workshop_id])
-    is_user_enrolled = workshop.users.find_by(id: params[:user_id])
+    is_user_enrolled = workshop.users.find_by(id: session[:user_id])
     # need some logic to check to see if a signup already exists.. if it does, then we need to return an error that 
     # user is already enrolled in this class
     if is_user_enrolled
