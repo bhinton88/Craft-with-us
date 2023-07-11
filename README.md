@@ -11,13 +11,14 @@ This app is for all the craft lovers who enjoy learning new crafts or build on t
 
 ## Technologies
 
-React/JavaScript:
-  Dependencies:
+Front end:
+  - React/JavaScript
   - Bootstrap
   - Bootstrap-React
   - React Router Dom
 
-Ruby on Rails:
+Back end:
+  - Ruby on Rails
   - Active Record
   - Gems:
     - bcrypt for authorization
